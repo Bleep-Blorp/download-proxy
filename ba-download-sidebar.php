@@ -3,7 +3,7 @@
  Plugin Name: Download Proxy
  Plugin URI: https://bleepblorp.pub
  Description: Plugin to show referenced downloads in the sidebar
- Version: 1.0.0
+ Version: 1.0.1
  Author: Brian Anderson
  Author URI: https://bleepblorp.pub
  License: MIT
@@ -35,6 +35,7 @@ function ba_download_sidebar_proxy_downloads( $atts , $content = null ) {
   $regex_for_downloads = '/\[download.*id="([0-9]+)"\]/';
   $ids = [];
   $html = [];
+  $title = "Additional Information";
 
   $current_content = get_the_content();
 
@@ -45,11 +46,14 @@ function ba_download_sidebar_proxy_downloads( $atts , $content = null ) {
     }
   }
 
+  if( !empty($ids) ){
+    $html[]='<h2>'.$title.'</h2>';
+  }
   foreach($ids as $id){
-    $html[] = '[download id="'.$id.'"]';
+    $html[] = '<p>[download id="'.$id.'"]</p>';
   }
 
-	return apply_filters( 'the_content', join("\n", $html));
+  return do_shortcode( join( "\n", $html ) );
 }
 
 add_shortcode( 'ba-proxy-downloads', 'ba_download_sidebar_proxy_downloads' );

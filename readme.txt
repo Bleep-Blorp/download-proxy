@@ -3,7 +3,6 @@ Contributors: brian anderson
 Tags: downloads in sidebar
 Requires at least: 3.5
 Tested up to: 4.6.1
-Stable tag: 1.0.2
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
